@@ -1,0 +1,58 @@
+[alias]
+  # logs -- case insensitive search
+  l = "!f() { \
+    git log --color -i --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(green)(%ci | %cr) %Creset%Cblue[%an]\" | \
+    nl -v0 | \
+    sed 's/^ \\+/&HEAD~/'; \
+    }; f"
+  lf = log -i --name-status
+  lo = log -i --pretty=oneline
+  ls = log -i --stat
+  lsl = shortlog -i
+
+  # add
+  a = add
+  aa = add .
+  aam = "!git add .; git commit -m "
+
+  # commits
+  aacan = "!git add .; git commit --amend --no-edit"
+  c = commit
+  ca = commit --amend
+
+  #diff
+  d = diff -w
+  dd = "!f() { git diff HEAD~\"$1\" HEAD~\"$2\"; }; f"
+  df = "!f() { git diff --name-status HEAD~\"$1\" HEAD~\"$2\"; }; f"
+
+  # rebasing
+  rb = rebase
+  rbi = "!f() { git rebase -i HEAD~\"$1\"; }; f"
+  rbs = rebase --skip
+  rba = rebase --abort
+  rbc = rebase --continue
+
+  aliases = "!git config -l | awk -F \".\" ' { print $2 } ' | less"
+  br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+  del = branch -D
+  co = checkout
+  cob = checkout -b
+  curr = "rev-parse --abbrev-ref HEAD"
+  enforce = push --force-with-lease
+  s = status -s
+  undo = reset --soft HEAD~1
+
+[diff]
+  colorMoved = zebra
+
+[pull]
+  rebase = true
+
+[push]
+  default = upstream
+
+[status]
+  showUntrackedFiles = all
+
+[core]
+  editor = vim
