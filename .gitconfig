@@ -3,7 +3,7 @@
   l = "!f() { \
     git log --color -i --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(green)(%ci | %cr) %Creset%Cblue[%an]\" | \
     nl -v0 | \
-    sed 's/^ \\+/&HEAD~/'; \
+    less; \
     }; f"
   lf = log -i --name-status
   lo = log -i --pretty=oneline
